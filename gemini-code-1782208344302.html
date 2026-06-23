@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ms. Lê Hằng English - Premium Practice Suite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(-45deg, #f1e9ff, #e2f1ff, #ffeef8, #e8f9f2);
+            background-size: 400% 400%;
+            animation: gradientAnimation 20s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .font-serif-premium {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Ambient Fluid Glow Animation */
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .blob-glow-1 {
+            position: fixed; top: 10%; left: -10%; width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(168,85,247,0.18) 0%, rgba(255,255,255,0) 70%);
+            filter: blur(60px); z-index: -1; animation: floatBlob 12s ease-in-out infinite alternate;
+        }
+        .blob-glow-2 {
+            position: fixed; bottom: 10%; right: -10%; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(45,212,191,0.18) 0%, rgba(255,255,255,0) 70%);
+            filter: blur(80px); z-index: -1; animation: floatBlob 16s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes floatBlob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            100% { transform: translate(50px, 40px) scale(1.15); }
+        }
+
+        #particles-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0;
+        }
+
+        .premium-card {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased pb-28 relative tracking-wide">
+
+    <canvas id="particles-canvas"></canvas>
+
+    <div class="blob-glow-1"></div>
+    <div class="blob-glow-2"></div>
+
+    <header class="max-w-5xl w-full mx-auto pt-10 px-4 flex flex-col items-center relative z-10">
+        <div class="flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-gradient-to-r from-purple-800 via-pink-600 to-indigo-800 text-white font-extrabold text-[11px] md:text-xs tracking-widest uppercase shadow-xl shadow-purple-600/20 transform hover:scale-105 transition-all duration-300">
+            <span>✨ LỚP HỌC TIẾNG ANH CHẤT LƯỢNG CAO - MS. LÊ HẰNG ENGLISH ✨</span>
+        </div>
+    </header>
+
+    <section class="max-w-5xl w-full mx-auto px-4 mt-6 relative z-10">
+        <div class="bg-gradient-to-br from-purple-50/80 to-indigo-50/80 border border-purple-200 rounded-3xl p-6 text-center text-xs md:text-sm text-purple-950 font-semibold shadow-xl shadow-purple-900/5 leading-relaxed relative overflow-hidden">
+            <div class="absolute -top-6 -left-6 w-12 h-12 bg-purple-400/20 rounded-full blur-xl"></div>
+            <span class="font-serif-premium font-black text-lg md:text-xl block mb-1 text-purple-900 tracking-normal">⚠️ LỜI NHẮC TỪ CÔ LÊ HẰNG ⚠️</span>
+            Hãy chú ý phân biệt kỹ các âm bật hơi vô thanh <strong class="text-purple-700 font-extrabold">/p/</strong> và âm hữu thanh <strong class="text-indigo-700 font-extrabold">/b/</strong>, đặc biệt là các trường hợp <strong class="text-pink-600 font-extrabold">âm câm</strong> con nhé!<br>
+            <span class="text-pink-600 text-xs font-extrabold block mt-2 animate-pulse tracking-widest uppercase">👇 Click Chọn Từng Phần Để Làm Bài 👇</span>
+        </div>
+    </section>
+
+    <nav class="max-w-5xl w-full mx-auto px-4 mt-6 relative z-10">
+        <div class="grid grid-cols-2 gap-4 p-2 bg-slate-950/5 backdrop-blur-md rounded-2xl border border-white/60 shadow-inner">
+            <button onclick="changeSectionTab('ex1')" id="tab-ex1" class="py-3.5 text-xs md:text-sm font-bold rounded-xl text-center transition-all duration-300 bg-gradient-to-r from-purple-700 to-indigo-700 text-white shadow-lg shadow-purple-700/30">
+                🎯 Exercise 1 (Phát Âm)
+            </button>
+            <button onclick="changeSectionTab('ex2')" id="tab-ex2" class="py-3.5 text-xs md:text-sm font-bold rounded-xl text-center transition-all duration-300 text-purple-950 hover:bg-white/60">
+                ⚡ Exercise 2 (Trọng Âm)
+            </button>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl w-full mx-auto px-4 mt-6 relative z-10">
+        <div class="premium-card rounded-3xl p-6 md:p-10 shadow-2xl shadow-purple-950/5">
+            
+            <div class="mb-6 flex items-start gap-4">
+                <span id="header-icon" class="text-2xl p-2.5 bg-purple-100 rounded-2xl text-purple-700 shadow-sm shrink-0">🗣️</span>
+                <h2 id="exercise-main-title" class="text-purple-950 font-serif-premium font-bold text-base md:text-lg leading-relaxed pt-1">
+                    Exercise 1: Mark the letter A, B, C, or D to indicate the word whose underlined part differs from the other three in pronunciation in each of the following questions.
+                </h2>
+            </div>
+            
+            <div class="h-[1px] bg-gradient-to-r from-purple-300 via-pink-300 to-teal-300 mb-8 opacity-70"></div>
+
+            <div id="quiz-feed-wrapper" class="space-y-12">
+                </div>
+
+        </div>
+    </main>
+
+    <div class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-xl border-t border-purple-100 py-4 px-6 flex justify-between items-center shadow-[0_-10px_30px_rgba(124,58,237,0.08)] z-50">
+        <div class="text-purple-950 font-bold text-xs md:text-sm flex items-center gap-2 bg-purple-50 px-4 py-2 rounded-xl border border-purple-200 shadow-inner">
+            🥇 <span class="text-slate-600">Điểm của con:</span> <span id="footer-live-score" class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600 ml-0.5">0</span>
+        </div>
+        <button onclick="alertFinishMessage()" class="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 active:scale-95 text-white font-bold px-8 py-3 rounded-xl flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition-all text-xs md:text-sm uppercase tracking-wider">
+            Nộp Bài Cho Cô Hằng 🚀
+        </button>
+    </div>
+
+    <script>
+        // --- 1. HTML5 Canvas Particles System ---
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let particlesArray = [];
+        const shapesPool = ['★', '✨', '☁️'];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class BackgroundParticle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + Math.random() * 100;
+                this.size = Math.random() * 10 + 10;
+                this.speedY = Math.random() * 0.4 + 0.15;
+                this.speedX = Math.sin(Math.random() * 2) * 0.15;
+                this.char = shapesPool[Math.floor(Math.random() * shapesPool.length)];
+                this.opacity = Math.random() * 0.25 + 0.08;
+                const colors = ['#a855f7', '#ec4899', '#3b82f6', '#14b8a6'];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+            }
+            update() {
+                this.y -= this.speedY;
+                this.x += this.speedX;
+                if (this.y < -20) {
+                    this.y = canvas.height + 20;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+            draw() {
+                ctx.globalAlpha = this.opacity;
+                ctx.font = `${this.size}px Arial`;
+                ctx.fillStyle = this.color;
+                ctx.fillText(this.char, this.x, this.y);
+            }
+        }
+
+        function initParticles() {
+            particlesArray = [];
+            for (let i = 0; i < 20; i++) {
+                particlesArray.push(new BackgroundParticle());
+            }
+        }
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        initParticles();
+        animateParticles();
+
+        // --- 2. Audio Feedback System ---
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        function playSoundNotification(success) {
+            if (!audioContext) return;
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            osc.connect(gain); gain.connect(audioContext.destination);
+            
+            if (success) {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(523.25, audioContext.currentTime); 
+                osc.frequency.setValueAtTime(659.25, audioContext.currentTime + 0.08); 
+                gain.gain.setValueAtTime(0.08, audioContext.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                osc.start(); osc.stop(audioContext.currentTime + 0.3);
+            } else {
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(175, audioContext.currentTime);
+                gain.gain.setValueAtTime(0.12, audioContext.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.25);
+                osc.start(); osc.stop(audioContext.currentTime + 0.25);
+            }
+        }
+
+        // --- 3. Database ---
+        const exerciseData = {
+            ex1: [
+                { id: 1, label: "1", text: "Chọn từ có phần gạch chân phát âm khác biệt:", options: { A: "prepare", B: "appearance", C: "cupboard", D: "pop" }, answer: "C", exp: "👉 Trong từ <strong>cupboard</strong> (/ˈkʌbəd/), chữ 'p' là <strong>âm câm</strong> không phát âm.<br>👉 Các từ còn lại chữ 'p' đều được phát âm là /p/: <em>prepare</em> (/prɪˈpeər/), <em>appearance</em> (/əˈpɪərəns/), <em>pop</em> (/pɒp/)." },
+                { id: 2, label: "2", text: "Chọn từ có phần gạch chân phát âm khác biệt:", options: { A: "pig", B: "chubby", C: "pin", D: "pole" }, answer: "B", exp: "👉 Chữ 'b' trong <strong>chubby</strong> phát âm là âm hữu thanh /b/ (/ˈtʃʌbi/).<br>👉 Các từ còn lại phát âm là âm bật hơi vô thanh /p/: <em>pig</em> (/pɪɡ/), <em>pin</em> (/pɪn/), <em>pole</em> (/pəʊl/)." },
+                { id: 3, label: "3", text: "Chọn từ có phần gạch chân phát âm khác biệt:", options: { A: "better", B: "bobby", C: "birthday", D: "provide" }, answer: "D", exp: "👉 Chữ 'p' trong <strong>provide</strong> phát âm là âm vô thanh /p/ (/prəˈvaɪd/).<br>👉 Các từ còn lại phát âm là âm hữu thanh /b/: <em>better</em> (/ˈbetər/), <em>bobby</em> (/ˈbɒbi/), <em>birthday</em> (/ˈbɜːθdeɪ/)." },
+                { id: 4, label: "4", text: "Chọn từ có phần gạch chân phát âm khác biệt:", options: { A: "job", B: "tab", C: "pen", D: "neighbor" }, answer: "C", exp: "👉 Chữ 'p' trong <strong>pen</strong> phát âm là /p/ (/pen/).<br>👉 Các từ còn lại đều phát âm là /b/: <em>job</em> (/dʒɒb/), <em>tab</em> (/tæb/), <em>neighbor</em> (/ˈneɪbər/)." },
+                { id: 5, label: "5", text: "Chọn từ có phần gạch chân phát âm khác biệt:", options: { A: "airport", B: "speak", C: "notebook", D: "spoon" }, answer: "C", exp: "👉 Chữ 'b' trong <strong>notebook</strong> phát âm là /b/ (/ˈnəʊtbʊk/).<br>👉 Các từ còn lại phát âm là /p/: <em>airport</em> (/ˈeəpɔːt/), <em>speak</em> (/spiːk/), <em>spoon</em> (/spuːn/)." },
+                { id: 6, label: "6", text: "Chọn từ có phần gạch chân phát âm khác biệt:", options: { A: "about", B: "professional", C: "beautiful", D: "butterfly" }, answer: "B", exp: "👉 Chữ 'p' trong <strong>professional</strong> phát âm là /p/ (/prəˈfeʃənl/).<br>👉 Các từ còn lại phát âm là /b/: <em>about</em> (/əˈbaʊt/), <em>beautiful</em> (/ˈbjuːtɪfl/), <em>butterfly</em> (/ˈbʌtəflaɪ/)." },
+                { id: 7, label: "7", text: "Chọn từ có phần gạch chân phát âm khác biệt:", options: { A: "bed", B: "job", C: "pass", D: "bull" }, answer: "C", exp: "👉 Chữ 'p' trong <strong>pass</strong> phát âm là /p/ (/pɑːs/).<br>👉 Các từ còn lại phát âm là /b/: <em>bed</em> (/bed/), <em>job</em> (/dʒɒb/), <em>bull</em> (/bʊl/)." },
+                { id: 8, label: "8", text: "Chọn từ có phần gạch chân phát âm khác biệt:", options: { A: "ban", B: "pet", C: "peach", D: "pier" }, answer: "A", exp: "👉 Chữ 'b' trong <strong>ban</strong> phát âm là /b/ (/bæn/).<br>👉 Các từ còn lại phát âm là /p/: <em>pet</em> (/pet/), <em>peach</em> (/piːtʃ/), <em>pier</em> (/pɪər/)." },
+                { id: 9, label: "9", text: "Chọn từ có phần gạch chân phát âm khác biệt:", options: { A: "bat", B: "beer", C: "bye", D: "prize" }, answer: "D", exp: "👉 Chữ 'p' trong <strong>prize</strong> phát âm là /p/ (/praɪz/).<br>👉 Các từ còn lại phát âm là /b/: <em>bat</em> (/bæt/), <em>beer</em> (/bɪər/), <em>bye</em> (/baɪ/)." },
+                { id: 10, label: "10", text: "Chọn từ có phần gạch chân phát âm khác biệt:", options: { A: "best", B: "part", C: "pie", D: "pen" }, answer: "A", exp: "👉 Chữ 'b' trong <strong>best</strong> phát âm là /b/ (/best/).<br>👉 Các từ còn lại phát âm là /p/: <em>part</em> (/pɑːt/), <em>pie</em> (/paɪ/), <em>pen</em> (/pen/)." },
+                { id: 11, label: "11", text: "Chọn từ có phần gạch chân phát âm khác biệt:", options: { A: "bow", B: "pie", C: "back", D: "baby" }, answer: "B", exp: "👉 Chữ 'p' trong <strong>pie</strong> phát âm là /p/ (/paɪ/).<br>👉 Các từ còn lại phát âm là /b/: <em>bow</em> (/baʊ/), <em>back</em> (/bæk/), <em>baby</em> (/ˈbeɪbi/)." },
+                { id: 12, label: "12", text: "Chọn từ có phần gạch chân phát âm khác biệt:", options: { A: "copy", B: "happy", C: "beast", D: "pull" }, answer: "C", exp: "👉 Chữ 'b' trong <strong>beast</strong> phát âm là /b/ (/biːst/).<br>👉 Các từ còn lại phát âm là /p/: <em>copy</em> (/ˈkɒpi/), <em>happy</em> (/ˈhæpi/), <em>pull</em> (/pʊl/)." },
+                { id: 13, label: "13", text: "Chọn từ có phần gạch chân phát âm khác biệt:", options: { A: "pencil", B: "pocket", C: "boy", D: "postcard" }, answer: "C", exp: "👉 Chữ 'b' trong <strong>boy</strong> phát âm là /b/ (/bɔɪ/).<br>👉 Các từ còn lại phát âm là /p/: <em>pencil</em> (/ˈpensl/), <em>pocket</em> (/ˈpɒkɪt/), <em>postcard</em> (/ˈpəʊstkɑːd/)." },
+                { id: 14, label: "14", text: "Chọn từ có phần gạch chân phát âm khác biệt:", options: { A: "psychology", B: "positive", C: "patient", D: "present" }, answer: "A", exp: "👉 Chữ 'p' đứng đầu từ trong <strong>psychology</strong> (/saɪˈkɒlədʒi/) là <strong>âm câm</strong> không phát âm.<br>👉 Các từ còn lại âm 'p' bật rõ thành âm /p/." },
+                { id: 15, label: "15", text: "Chọn từ có phần gạch chân phát âm khác biệt:", options: { A: "brilliant", B: "barbecue", C: "climbing", D: "neighbor" }, answer: "C", exp: "👉 Chữ 'b' trong từ <strong>climbing</strong> (/ˈklaɪmɪŋ/) đứng sau 'm' ở cuối từ nên trở thành <strong>âm câm</strong>.<br>👉 Các từ còn lại âm 'b' phát âm bình thường: <em>brilliant</em> (/ˈbrɪliənt/), <em>barbecue</em> (/ˈbɑːbɪkjuː/), <em>neighbor</em> (/ˈneɪbər/)." }
+            ],
+            ex2: [
+                { id: 1, label: "1", text: "Chọn từ có vị trí trọng âm chính khác biệt:", options: { A: "friendly", B: "picture", C: "volleyball", D: "inside" }, answer: "D", exp: "👉 <strong>inside</strong> có trọng âm nhấn vào âm tiết thứ 2 (/ɪnˈsaɪd/).<br>👉 Các từ còn lại trọng âm rơi vào âm tiết thứ 1: <em>friendly</em> (/ˈfrendli/), <em>picture</em> (/ˈpɪktʃər/), <em>volleyball</em> (/ˈvɒlibɔːl/)." },
+                { id: 2, label: "2", text: "Chọn từ có vị trí trọng âm chính khác biệt:", options: { A: "confident", B: "interview", C: "personality", D: "photo" }, answer: "C", exp: "👉 <strong>personality</strong> có trọng âm rơi vào âm tiết thứ 3 (/ˌpɜːsəˈnæləti/).<br>👉 Các từ còn lại rơi vào âm tiết thứ 1: <em>confident</em> (/ˈkɒnfɪdənt/), <em>interview</em> (/ˈɪntəvjuː/), <em>photo</em> (/ˈfəʊtəʊ/)." },
+                { id: 3, label: "3", text: "Chọn từ có vị trí trọng âm chính khác biệt:", options: { A: "energy", B: "several", C: "different", D: "appliance" }, answer: "D", exp: "👉 <strong>appliance</strong> có trọng âm rơi vào âm tiết thứ 2 (/əˈplaɪəns/).<br>👉 Các từ còn lại rơi vào âm tiết thứ 1: <em>energy</em> (/ˈenədʒi/), <em>several</em> (/ˈsevrəl/), <em>different</em> (/ˈdɪfrənt/)." },
+                { id: 4, label: "4", text: "Chọn từ có vị trí trọng âm chính khác biệt:", options: { A: "orphan", B: "friendly", C: "appear", D: "beauty" }, answer: "C", exp: "👉 <strong>appear</strong> là động từ có trọng âm rơi vào âm tiết thứ 2 (/əˈpɪər/).<br>👉 Các từ còn lại rơi vào âm tiết thứ 1: <em>orphan</em> (/ˈɔːfn/), <em>friendly</em> (/ˈfrendli/), <em>beauty</em> (/ˈbjuːti/)." },
+                { id: 5, label: "5", text: "Chọn từ có vị trí trọng âm chính khác biệt:", options: { A: "respond", B: "magazine", C: "suggestion", D: "creative" }, answer: "B", exp: "👉 <strong>magazine</strong> nhấn âm tiết thứ 3 (/ˌmæɡəˈziːn/).<br>👉 Các từ còn lại đều có trọng âm rơi vào âm tiết thứ 2: <em>respond</em> (/rɪˈspɒnd/), <em>suggestion</em> (/səˈdʒestʃən/), <em>creative</em> (/kriˈeɪtɪv/)." },
+                { id: 6, label: "6", text: "Chọn từ có vị trí trọng âm chính khác biệt:", options: { A: "beside", B: "patient", C: "elbow", D: "poem" }, answer: "A", exp: "👉 <strong>beside</strong> là giới từ/trạng từ có trọng âm rơi vào âm tiết thứ 2 (/bɪˈsaɪd/).<br>👉 Các từ còn lại nhấn âm tiết thứ 1: <em>patient</em> (/ˈpeɪʃnt/), <em>elbow</em> (/ˈelbəʊ/), <em>poem</em> (/ˈpəʊɪm/)." },
+                { id: 7, label: "7", text: "Chọn từ có vị trí trọng âm chính khác biệt:", options: { A: "appear", B: "active", C: "careful", D: "curly" }, answer: "A", exp: "👉 <strong>appear</strong> nhấn vào âm tiết thứ 2 (/əˈpɪər/).<br>👉 Các từ còn lại là tính từ có 2 âm tiết, trọng âm nhấn vào âm tiết thứ 1: <em>active</em> (/ˈæktɪv/), <em>careful</em> (/ˈkeəfl/), <em>curly</em> (/ˈkɜːli/)." },
+                { id: 8, label: "8", text: "Chọn từ có vị trí trọng âm chính khác biệt:", options: { A: "caring", B: "effect", C: "clever", D: "friendly" }, answer: "B", exp: "👉 <strong>effect</strong> là danh từ đặc biệt có trọng âm rơi vào âm tiết thứ 2 (/ɪˈfekt/).<br>👉 Các từ còn lại nhấn vào âm tiết thứ 1: <em>caring</em> (/ˈkeərɪŋ/), <em>clever</em> (/ˈklevər/), <em>friendly</em> (/ˈfrendli/)." },
+                { id: 9, label: "9", text: "Chọn từ có vị trí trọng âm chính khác biệt:", options: { A: "museum", B: "invite", C: "independent", D: "description" }, answer: "C", exp: "👉 <strong>independent</strong> có tiền tố in- không làm đổi trọng âm, rơi vào âm tiết thứ 3 (/ˌɪndɪˈpendənt/).<br>👉 Các từ còn lại đều có trọng âm rơi vào âm tiết thứ 2: <em>museum</em> (/mjuːˈziːəm/), <em>invite</em> (/ɪnˈvaɪt/), <em>description</em> (/dɪˈskrɪpʃn/)." },
+                { id: 10, label: "10", text: "Chọn từ có vị trí trọng âm chính khác biệt:", options: { A: "funny", B: "handy", C: "tonight", D: "kindness" }, answer: "C", exp: "👉 <strong>tonight</strong> là trạng từ chỉ thời gian có trọng âm rơi vào âm tiết thứ 2 (/təˈnaɪt/).<br>👉 Các từ còn lại nhấn vào âm tiết thứ 1: <em>funny</em> (/ˈfʌni/), <em>handy</em> (/ˈhændi/), <em>kindness</em> (/ˈkaɪndnəs/)." }
+            ]
+        };
+
+        let currentActiveSection = 'ex1';
+        let studentAccumulatedScore = 0;
+        let loggedExamProgress = { ex1: {}, ex2: {} };
+
+        function changeSectionTab(sectionKey) {
+            currentActiveSection = sectionKey;
+            
+            const btn1 = document.getElementById('tab-ex1');
+            const btn2 = document.getElementById('tab-ex2');
+            const headerText = document.getElementById('exercise-main-title');
+            const headerIcon = document.getElementById('header-icon');
+
+            if (sectionKey === 'ex1') {
+                btn1.className = "py-3.5 text-xs md:text-sm font-bold rounded-xl text-center transition-all duration-300 bg-gradient-to-r from-purple-700 to-indigo-700 text-white shadow-lg shadow-purple-700/30";
+                btn2.className = "py-3.5 text-xs md:text-sm font-bold rounded-xl text-center transition-all duration-300 text-purple-950 hover:bg-white/60";
+                headerText.innerText = "Exercise 1: Mark the letter A, B, C, or D to indicate the word whose underlined part differs from the other three in pronunciation in each of the following questions.";
+                headerIcon.innerText = "🗣️";
+            } else {
+                btn2.className = "py-3.5 text-xs md:text-sm font-bold rounded-xl text-center transition-all duration-300 bg-gradient-to-r from-purple-700 to-indigo-700 text-white shadow-lg shadow-purple-700/30";
+                btn1.className = "py-3.5 text-xs md:text-sm font-bold rounded-xl text-center transition-all duration-300 text-purple-950 hover:bg-white/60";
+                headerText.innerText = "Exercise 2: Mark the letter A, B, C, or D to indicate the word that differs from the other three in the position of primary stress in each of the following questions.";
+                headerIcon.innerText = "⚡";
+            }
+
+            renderQuizListFeed();
+        }
+
+        function renderQuizListFeed() {
+            const feedContainer = document.getElementById('quiz-feed-wrapper');
+            feedContainer.innerHTML = '';
+
+            const activeList = exerciseData[currentActiveSection];
+
+            activeList.forEach((questionObj, index) => {
+                const questionContainerCard = document.createElement('div');
+                questionContainerCard.className = "pb-8 border-b border-purple-100 last:border-none";
+
+                const blockHeader = document.createElement('div');
+                blockHeader.className = "flex items-start gap-3 mb-5";
+                blockHeader.innerHTML = `
+                    <span class="bg-gradient-to-r from-purple-700 to-indigo-700 text-white text-[10px] font-extrabold px-3.5 py-1.5 rounded-xl shrink-0 mt-0.5 shadow-md shadow-purple-700/10 uppercase tracking-wider">CÂU ${questionObj.label}</span>
+                    <span class="font-bold text-slate-950 text-sm md:text-base leading-relaxed">${questionObj.text}</span>
+                `;
+                questionContainerCard.appendChild(blockHeader);
+
+                const buttonsGrid = document.createElement('div');
+                buttonsGrid.className = "grid grid-cols-1 md:grid-cols-2 gap-4";
+
+                const historicalState = loggedExamProgress[currentActiveSection][index];
+
+                Object.entries(questionObj.options).forEach(([key, value]) => {
+                    const optionBtn = document.createElement('button');
+                    optionBtn.className = "option-card flex items-center justify-between p-4 bg-white border border-purple-200 rounded-xl text-left text-xs md:text-sm font-semibold text-slate-800 hover:bg-purple-50/50 hover:border-purple-500 transition-all duration-200 shadow-sm";
+                    
+                    let statusRadioNode = `<span class="w-4 h-4 rounded-full border border-purple-300 bg-white flex items-center justify-center shrink-0"></span>`;
+
+                    if (historicalState) {
+                        optionBtn.disabled = true;
+                        if (key === questionObj.answer) {
+                            optionBtn.className = "option-card flex items-center justify-between p-4 bg-emerald-50/80 border-2 border-emerald-500 rounded-xl text-left text-xs md:text-sm font-bold text-emerald-950 shadow-sm";
+                            statusRadioNode = `<span class="w-4 h-4 rounded-full bg-emerald-500 flex items-center justify-center text-white text-[9px] font-black shrink-0">✓</span>`;
+                        } else if (historicalState.selected === key) {
+                            optionBtn.className = "option-card flex items-center justify-between p-4 bg-rose-50/80 border-2 border-rose-500 rounded-xl text-left text-xs md:text-sm font-bold text-rose-950 shadow-sm";
+                            statusRadioNode = `<span class="w-4 h-4 rounded-full bg-rose-500 flex items-center justify-center text-white text-[9px] font-black shrink-0">✕</span>`;
+                        } else {
+                            optionBtn.className = "option-card flex items-center justify-between p-4 bg-slate-50 border border-slate-200 opacity-40 rounded-xl text-left text-xs md:text-sm font-medium text-slate-400 shadow-none";
+                            statusRadioNode = `<span class="w-4 h-4 rounded-full border border-slate-200 bg-slate-50 shrink-0"></span>`;
+                        }
+                    } else {
+                        optionBtn.onclick = () => processStudentSelection(index, key);
+                    }
+
+                    optionBtn.innerHTML = `<span><strong class="text-purple-700 font-extrabold text-sm md:text-base mr-2">${key}.</strong> ${value}</span> ${statusRadioNode}`;
+                    buttonsGrid.appendChild(optionBtn);
+                });
+
+                questionContainerCard.appendChild(buttonsGrid);
+
+                if (historicalState) {
+                    const structuralExpBox = document.createElement('div');
+                    structuralExpBox.className = "mt-4 p-4 md:p-5 bg-gradient-to-br from-purple-50/50 to-indigo-50/50 border border-purple-200 rounded-xl shadow-sm relative overflow-hidden";
+                    structuralExpBox.innerHTML = `
+                        <div class="flex items-center gap-2 font-bold text-purple-950 uppercase text-[11px] mb-2 tracking-widest">
+                            <span class="text-sm">💡</span> GIẢI THÍCH TỪ CÔ LÊ HẰNG:
+                        </div>
+                        <div class="text-slate-800 text-xs md:text-sm leading-relaxed space-y-1 pl-4 border-l-2 border-purple-400 font-medium">
+                            ${questionObj.exp}
+                        </div>
+                    `;
+                    questionContainerCard.appendChild(structuralExpBox);
+                }
+
+                feedContainer.appendChild(questionContainerCard);
+            });
+        }
+
+        function processStudentSelection(index, optionChar) {
+            if (loggedExamProgress[currentActiveSection][index]) return;
+
+            const referenceQuestion = exerciseData[currentActiveSection][index];
+            const isCorrect = (optionChar === referenceQuestion.answer);
+
+            if (isCorrect) {
+                studentAccumulatedScore += 10;
+            }
+
+            loggedExamProgress[currentActiveSection][index] = { selected: optionChar, isCorrect: isCorrect };
+            document.getElementById('footer-live-score').innerText = studentAccumulatedScore;
+            
+            playSoundNotification(isCorrect);
+            renderQuizListFeed();
+        }
+
+        function alertFinishMessage() {
+            alert(`🎉 Chúc mừng con đã hoàn thành xong bài tập ngày hôm nay!\n🏆 Tổng số điểm đạt được: ${studentAccumulatedScore} điểm.`);
+        }
+
+        window.onload = () => {
+            renderQuizListFeed();
+        };
+    </script>
+</body>
+</html>
